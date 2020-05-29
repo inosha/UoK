@@ -18,11 +18,24 @@ grep -r "80" /etc/httpd/
 grep -r "443" /etc/httpd/
 netstat -lnp | grep httpd
 
+installing dspace & tomcat:
+
+apache reverse proxy:
 
 
 
+changing dspace handler url:
+vi /dspace/config/dspace.cfg
 
+# DSpace host name - should match base URL.  Do not include port number.
+dspace.hostname = pastpaper.kln.ac.lk
+#dspace.hostname = localhost
 
+# DSpace base host URL.  Include port number etc.
+dspace.baseUrl = htttp://pastpaper.kln.ac.lk
+#dspace.baseUrl = http://localhost:8080
+
+enabling shibboleth auth:
 
 
 
