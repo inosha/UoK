@@ -27,6 +27,8 @@ netstat -lnp | grep httpd
 
 
 Ref:
+
+https://fossies.org/linux/dspace/dspace/config/dspace.cfg
 https://wiki.duraspace.org/spaces/flyingpdf/pdfpageexport.action?pageId=45548204
 https://github.com/LEARN-LK/IAM/blob/master/SP_Ubuntu1804.md
 http://dspace.cusat.ac.in/jspui/bitstream/123456789/13954/1/Installing_DSpace_%206.3_in_Ubuntu_18.04.1.pdf
