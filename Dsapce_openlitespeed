@@ -22,7 +22,10 @@ installing dspace & tomcat:
 
 apache reverse proxy:
 
-
+Certbot:
+add-apt-repository ppa:certbot/certbot
+apt install python-certbot-apache
+certbot --apache -d domain.TLD
 
 changing dspace handler url:
 vi /dspace/config/dspace.cfg
@@ -32,10 +35,61 @@ dspace.hostname = pastpaper.kln.ac.lk
 #dspace.hostname = localhost
 
 # DSpace base host URL.  Include port number etc.
-dspace.baseUrl = htttp://pastpaper.kln.ac.lk
+dspace.baseUrl = https://pastpaper.kln.ac.lk
 #dspace.baseUrl = http://localhost:8080
 
+https://www.researchgate.net/publication/305390659_Using_Persistent_Identifier_Handling_Systems_in_DSpace
+[dspace]/bin/dspace update-handle-prefix 123456789 1303
+
 enabling shibboleth auth:
+
+vi [dspace]/config/modules/authentication-shibboleth.cfg
+
+#email-header = SHIB-MAIL
+netid-header = uid
+email-header = email
+
+apt install libapache2-mod-shib2 libapache2-mod-php
+
+Download Metadata Signing Certificate:
+cd /etc/shibboleth/
+wget https://fr.ac.lk/signedmetadata/metadata-signer -O federation-cert.pem
+
+Edit shibboleth2.xml opportunely:
+vim /etc/shibboleth/shibboleth2.xml
+...
+<ApplicationDefaults entityID="https://sp.YOUR-DOMAIN/shibboleth"
+     REMOTE_USER="eppn persistent-id targeted-id">
+...
+<Sessions lifetime="28800" timeout="3600" checkAddress="false" handlerSSL="true" cookieProps="https">
+...
+<SSO discoveryProtocol="SAMLDS" discoveryURL="https://fds.ac.lk">
+   SAML2
+</SSO>
+...
+<MetadataProvider type="XML" uri="https://fr.ac.lk/signedmetadata/metadata.xml" legacyOrgName="true" backingFilePath="test-metadata.xml" reloadInterval="600">
+      
+      <MetadataFilter type="Signature" certificate="federation-cert.pem"/>
+      
+      <MetadataFilter type="RequireValidUntil" maxValidityInterval="864000" />
+</MetadataProvider>
+
+Create SP metadata credentials:
+/usr/sbin/shib-keygen
+shibd -t /etc/shibboleth/shibboleth2.xml (Check Shibboleth configuration)
+
+Enable Shibboleth Apache2 configuration:
+a2enmod shib2
+systemctl reload apache2.service
+
+Now you are able to reach your Shibboleth SP Metadata on:
+https://YOUR-DOMAIN/Shibboleth.sso/Metadata
+
+https://www.fukr.org.uk/?p=21
+https://www.fukr.org.uk/?p=24
+
+attribute mapping
+vi /etc/shibboleth/attribute-map.xml
 
 restornig DB+data:
 
