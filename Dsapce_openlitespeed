@@ -97,6 +97,13 @@ http://dspacegeek.blogspot.com/2016/06/restore-old-versions-of-dspace-to.html
 managing user accounts:
 https://wiki.lyrasis.org/display/DSDOC6x/Managing+User+Accounts
 [dspace]/bin/dspace user --delete --email examle@doamin.tld
+
+favicon
+[dsapce]/webapps/xmlui/themes/Mirage/images/dspace-logo-only.png
+[dspace]/dspace-xmlui/dspace-xmlui-webapp/src/main/webapp/themes/Mirage/images/dspace-logo-only.png
+[dspace]/webapps/jspui/favicon.ico
+
+
 Ref:
 
 https://fossies.org/linux/dspace/dspace/config/dspace.cfg
