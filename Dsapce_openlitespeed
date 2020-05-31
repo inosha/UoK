@@ -96,6 +96,7 @@ http://dspacegeek.blogspot.com/2016/06/restore-old-versions-of-dspace-to.html
 
 managing user accounts:
 https://wiki.lyrasis.org/display/DSDOC6x/Managing+User+Accounts
+[dspace]/bin/dspace user --delete --email examle@doamin.tld
 Ref:
 
 https://fossies.org/linux/dspace/dspace/config/dspace.cfg
