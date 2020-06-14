@@ -1,0 +1,21 @@
+Situation:
+multipathd error ... sda: failed to get sgio uid: No such file or directory
+
+There is no link in /dev/disk/by-id for SCSI (sdx) devices. The OS is running as a guest on VMWare ESX
+
+Resolution
+
+By default VMWare doesn't provide information needed by udev to generate /dev/disk/by-id. This can be done by setting the following:
+
+    Start the vSphere Client, and log in to a vCenter Server.
+    Select Virtual Machines and Templates and click the Virtual Machines tab.
+    Right-click the virtual machine for which you are enabling the disk UUID attribute, and select Power > Power Off.
+    The virtual machine powers off.
+    Right-click the virtual machine, and click Edit Settings.
+    Click the Options tab, and select the General entry in the settings column.
+    Click Configuration Parameters. The Configuration Parameters window appears.
+    Click Add Row.
+    In the Name column, enter disk.EnableUUID.
+    In the Value column, enter TRUE.
+    Click OK and click Save.
+    Power on the virtual machine.
