@@ -1,0 +1,2 @@
+apachectl -M
+https://www.linode.com/docs/web-servers/apache-tips-and-tricks/configure-modsecurity-on-apache/
