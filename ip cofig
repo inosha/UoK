@@ -17,3 +17,15 @@ Usage:
 Example:
 
 # /sbin/ifconfig eth0 inet6 add 2001:0db8:0:f101::1/64 
+
+
+
+    4  /sbin/ip -6 addr add 2001:0db8:0:f101::1/64 dev ens160
+    5  ip a
+    6  apt-get install certbot python3-certbot-apache
+    7  certbot --apache
+    8  systemctl restart apache2
+    
+    
+    
+    
