@@ -1,0 +1,19 @@
+https://www.tldp.org/HOWTO/Linux+IPv6-HOWTO/ch06s02.html
+
+2. Add an IPv6 address
+Adding an IPv6 address is similar to the mechanism of "IP ALIAS" addresses in Linux IPv4 addressed interfaces.
+
+2.1. Using "ip"
+Usage:
+
+# /sbin/ip -6 addr add <ipv6address>/<prefixlength> dev <interface> 
+Example:
+
+# /sbin/ip -6 addr add 2001:0db8:0:f101::1/64 dev eth0 
+2.2. Using "ifconfig"
+Usage:
+
+# /sbin/ifconfig <interface> inet6 add <ipv6address>/<prefixlength>
+Example:
+
+# /sbin/ifconfig eth0 inet6 add 2001:0db8:0:f101::1/64 
